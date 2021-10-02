@@ -75,6 +75,7 @@ function createGeometries() {
     const sagradaFamiliaOut = new THREE.CylinderBufferGeometry( 0.1, 0.8, 6, 64);
     const sagradaFamiliaMid = new THREE.CylinderBufferGeometry( 0.1, 0.8, 7, 64);
     const sagradaFamiliaIn = new THREE.CylinderBufferGeometry( 0.1, 0.8, 4.5, 64);
+    const sagradaFamiliaTop = new THREE.SphereBufferGeometry(0.2, 64, 64);
 
     const notreDameDeParisOut = new THREE.BoxBufferGeometry(1.5, 5, 1.5);
     const notreDameDeParisMid = new THREE.BoxBufferGeometry(1.5, 3.5, 1.5);
@@ -94,6 +95,7 @@ function createGeometries() {
         sagradaFamiliaOut,
         sagradaFamiliaMid,
         sagradaFamiliaIn,
+        sagradaFamiliaTop,
         notreDameDeParisOut,
         notreDameDeParisMid,
         notreDameDeParisCir,
@@ -124,8 +126,9 @@ function createMaterials() {
     const darkRockTexture = new THREE.MeshBasicMaterial({
         map: loader.load('assets/dark-rock.jpg'),
     });
-    const orangeRockTexture = new THREE.MeshBasicMaterial({
-        map: loader.load('assets/orange-rock.jpg'),
+    const redRockTexture = new THREE.MeshBasicMaterial({
+        map: loader.load('assets/red-rock.jpg'),
+        color: 0xF5C6A5,
     });
 
     return {
@@ -134,7 +137,7 @@ function createMaterials() {
         rockTexture,
         lightRockTexture,
         darkRockTexture,
-        orangeRockTexture,
+        redRockTexture,
     }
 }
 
@@ -189,7 +192,7 @@ function createTorreDiPisa() {
     );
     const torreDiPisaGroup = new THREE.Group();
     torreDiPisaGroup.add(torreDiPisaBodyGroup, torreDiPisaHead);
-    torreDiPisaGroup.rotation.x = Math.PI / 180 * 10;
+    torreDiPisaGroup.rotation.z = Math.PI / 180 * 10;
     torreDiPisaGroup.rotation.y = Math.PI / 180 * 180;
     torreDiPisaGroup.position.z = 4;
 
@@ -214,33 +217,60 @@ function createSagradaFamiliaGroup() {
     const geometries = createGeometries();
     const materials = createMaterials();
 
-    const sagradaFamiliaOutLeft = new THREE.Mesh(geometries.sagradaFamiliaOut, materials.orangeRockTexture);
-    sagradaFamiliaOutLeft.position.set(4, 0.5, -1);
+    const sagradaFamiliaOutLeft = new THREE.Mesh(geometries.sagradaFamiliaOut, materials.redRockTexture);
+    sagradaFamiliaOutLeft.position.x = -2;
+    sagradaFamiliaOutLeft.position.y = -0.5;
     sagradaFamiliaOutLeft.rotation.y = Math.PI / 180 * 45;
 
-    const sagradaFamiliaOutRight = new THREE.Mesh(geometries.sagradaFamiliaOut, materials.orangeRockTexture);
-    sagradaFamiliaOutRight.position.set(8, 0.5, -1);
+    const sagradaFamiliaOutLeftTop = new THREE.Mesh(geometries.sagradaFamiliaTop, materials.redRockTexture);
+    sagradaFamiliaOutLeftTop.position.x = -2;
+    sagradaFamiliaOutLeftTop.position.y = 2.5;
+
+    const sagradaFamiliaOutRight = new THREE.Mesh(geometries.sagradaFamiliaOut, materials.redRockTexture);
+    sagradaFamiliaOutRight.position.x = 2;
+    sagradaFamiliaOutRight.position.y = -0.5;
     sagradaFamiliaOutRight.rotation.y = Math.PI / 180 * 180;
 
-    const sagradaFamiliaMidLeft = new THREE.Mesh(geometries.sagradaFamiliaMid, materials.orangeRockTexture);
-    sagradaFamiliaMidLeft.position.set(5, 1, -1);
+    const sagradaFamiliaOutRightTop = new THREE.Mesh(geometries.sagradaFamiliaTop, materials.redRockTexture);
+    sagradaFamiliaOutRightTop.position.x = 2;
+    sagradaFamiliaOutRightTop.position.y = 2.5;
+
+    const sagradaFamiliaMidLeft = new THREE.Mesh(geometries.sagradaFamiliaMid, materials.redRockTexture);
+    sagradaFamiliaMidLeft.position.x = -1;
     sagradaFamiliaMidLeft.rotation.y = Math.PI / 180 * 30;
 
-    const sagradaFamiliaMidRight = new THREE.Mesh(geometries.sagradaFamiliaMid, materials.orangeRockTexture);
-    sagradaFamiliaMidRight.position.set(7, 1, -1);
+    const sagradaFamiliaMidLeftTop = new THREE.Mesh(geometries.sagradaFamiliaTop, materials.redRockTexture);
+    sagradaFamiliaMidLeftTop.position.x = -1;
+    sagradaFamiliaMidLeftTop.position.y = 3.5;
+
+    const sagradaFamiliaMidRight = new THREE.Mesh(geometries.sagradaFamiliaMid, materials.redRockTexture);
+    sagradaFamiliaMidRight.position.x = 1;
     sagradaFamiliaMidRight.rotation.y = Math.PI / 180 * 75;
 
-    const sagradaFamiliaIn = new THREE.Mesh(geometries.sagradaFamiliaIn, materials.orangeRockTexture);
-    sagradaFamiliaIn.position.set(6, -0.25, -1);
+    const sagradaFamiliaMidRightTop = new THREE.Mesh(geometries.sagradaFamiliaTop, materials.redRockTexture);
+    sagradaFamiliaMidRightTop.position.x = 1;
+    sagradaFamiliaMidRightTop.position.y = 3.5;
+
+    const sagradaFamiliaIn = new THREE.Mesh(geometries.sagradaFamiliaIn, materials.redRockTexture);
+    sagradaFamiliaIn.position.y = -1.25;
     sagradaFamiliaIn.rotation.y = Math.PI / 180 * 90;
+
+    const sagradaFamiliaInTop = new THREE.Mesh(geometries.sagradaFamiliaTop, materials.redRockTexture);
+    sagradaFamiliaInTop.position.y = 1;
     
     const sagradaFamiliaGroup = new THREE.Group();
+    sagradaFamiliaGroup.position.set(6, 0, -1);
     sagradaFamiliaGroup.add(
         sagradaFamiliaOutLeft, 
+        sagradaFamiliaOutLeftTop,
         sagradaFamiliaOutRight,
+        sagradaFamiliaOutRightTop,
         sagradaFamiliaMidLeft,
+        sagradaFamiliaMidLeftTop,
         sagradaFamiliaMidRight,
-        sagradaFamiliaIn
+        sagradaFamiliaMidRightTop,
+        sagradaFamiliaIn,
+        sagradaFamiliaInTop,
     );
 
     return sagradaFamiliaGroup;

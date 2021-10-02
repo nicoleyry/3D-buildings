@@ -17,11 +17,34 @@
         #scene-container {
             position: absolute;
             width: 100vw;
-            height: 100vh;
+            height: 85vh;
+            z-index: 2;
+        }
+        #gallery {
+            position: absolute;
+            bottom: 0;
+            width: 100vw;
+            height: 15vh;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        #gallery img {
+            width: auto;
+            height: 14vh;
         }
     </style>
 </head>
 <body>
     <div id="scene-container" aria-label="A 3d scene consisting of animated geometric shapes." role="img"></div>
+    <div id="gallery">
+        <img src="/assets/NotreDameDeParis.jpg" alt="Notre Dame De Paris, Credit: https://unsplash.com/photos/5iepu-lLVyg?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink">
+        <img src="/assets/Pyramid.jpg" alt="Pyramid, Credit: https://unsplash.com/photos/3lliBG4a5sI?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink">
+        <img src="/assets/AcropolisOfAthens.jpg" alt="Acropolis Of Athens, Credit: https://unsplash.com/photos/ilQmlVIMN4c?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink">
+        <img src="/assets/TorreDiPisa.jpg" alt="Torre Di Pisa, Credit: https://unsplash.com/photos/6eDZ34TTyDs?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink">
+        <img src="/assets/SagradaFamilia.jpg" alt="Sagrada Familia, Credit: https://unsplash.com/photos/-271sKk6WaM?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink">
+    </div>
 </body>
 </html>

@@ -34,7 +34,7 @@ function init() {
 
 function createCamera() {
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(-2, 8, 20);
+    camera.position.set(0, 6, 20);
 }
 
 function createControls() {
@@ -120,25 +120,36 @@ function createMaterials() {
         map: loader.load('assets/pyramid-texture.jpg'),
         color: 0xb3b3b3,
     });
+    // https://unsplash.com/photos/UlDeg0eSJbQ?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
+    
     const stoneTexture = new THREE.MeshBasicMaterial({
         map: loader.load('assets/stone.jpg'),
     });
+    // https://unsplash.com/photos/f_iJ4iHMXmw?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
+    
     const rockTexture = new THREE.MeshBasicMaterial({
         map: loader.load('assets/rock.jpg'),
         color: 0xb3b3b3,
     });
+    // https://unsplash.com/photos/ztsdXeryWps?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
+    
     const lightRockTexture = new THREE.MeshBasicMaterial({
         map: loader.load('assets/light-rock.jpg'),
         color: 0xF9E4C8,
     });
+    // https://unsplash.com/photos/Md6_qA-BMis?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
+    
     const darkRockTexture = new THREE.MeshBasicMaterial({
         map: loader.load('assets/dark-rock.jpg'),
         color: 0xF9E4C8,
     });
+    // https://unsplash.com/photos/u4ijcCaprRc?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
+    
     const redRockTexture = new THREE.MeshBasicMaterial({
         map: loader.load('assets/red-rock.jpg'),
         color: 0xF5C6A5,
     });
+    // https://unsplash.com/photos/toPZmF6D9dg?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
 
     return {
         pyramidTexture,
@@ -154,12 +165,24 @@ function createMeshes() {
     artwork = new THREE.Group();
     scene.add(artwork);
     
-    const torreDiPisaGroup = createTorreDiPisa();
-    const pyramidGroup = createPyramid();
-    const sagradaFamiliaGroup = createSagradaFamiliaGroup();
     const notreDameDeParisGroup = createNotreDameDeParis();
-    const acropolisOfAthensGroup = createAcropolisOfAthensMesh();
+    notreDameDeParisGroup.position.set(-13, 2, -6);
 
+    const pyramidGroup = createPyramid();
+    pyramidGroup.position.set(-9, -2, 2);
+    pyramidGroup.rotation.y = Math.PI / 180 * 45;
+    
+    const acropolisOfAthensGroup = createAcropolisOfAthensMesh();
+    acropolisOfAthensGroup.position.set(-2, -1, -9);
+    acropolisOfAthensGroup.rotation.y = Math.PI / 180 * 45;
+
+    const torreDiPisaGroup = createTorreDiPisa();
+    torreDiPisaGroup.position.set(4, -2, 1.5);
+    
+    const sagradaFamiliaGroup = createSagradaFamiliaGroup();
+    sagradaFamiliaGroup.position.set(12, 2, -5);
+    sagradaFamiliaGroup.rotation.y = Math.PI / 180 * (-20);
+    
     artwork.add(
         torreDiPisaGroup,
         pyramidGroup,
@@ -199,7 +222,6 @@ function createTorreDiPisa() {
         torreDiPisaBodyParts6
     );
     const torreDiPisaGroup = new THREE.Group();
-    torreDiPisaGroup.position.set(3, -1.5, 1.5);
     torreDiPisaGroup.add(torreDiPisaBodyGroup, torreDiPisaHead);
     torreDiPisaGroup.rotation.z = Math.PI / 180 * 10;
     torreDiPisaGroup.rotation.y = Math.PI / 180 * 180;
@@ -218,7 +240,6 @@ function createPyramid() {
     const pyramidSmall = new THREE.Mesh(geometries.pyramidSmall, materials.pyramidTexture);
     pyramidSmall.position.z = 0.75;
     const pyramidGroup = new THREE.Group();
-    pyramidGroup.position.set(-4, -2.5, 1.8);
     pyramidGroup.add(pyramidBig, pyramidSmall);
     
     return pyramidGroup;
@@ -270,7 +291,6 @@ function createSagradaFamiliaGroup() {
     sagradaFamiliaInTop.position.y = 1;
     
     const sagradaFamiliaGroup = new THREE.Group();
-    sagradaFamiliaGroup.position.set(10, 0, -1);
     sagradaFamiliaGroup.add(
         sagradaFamiliaOutLeft, 
         sagradaFamiliaOutLeftTop,
@@ -337,7 +357,6 @@ function createNotreDameDeParis() {
 
 
     const notreDameDeParisGroup = new THREE.Group();
-    notreDameDeParisGroup.position.set(-9, -2, -3);
     notreDameDeParisGroup.add(
         notreDameDeParisOutLeft,
         notreDameDeParisOutRight,
@@ -499,7 +518,6 @@ function createAcropolisOfAthensMesh() {
     acropolisOfAthensPillar46.rotation.z = Math.PI / 180 * 180;
 
     const acropolisOfAthensGroup = new THREE.Group();
-    acropolisOfAthensGroup.position.set(0, -3, -7);
     acropolisOfAthensGroup.add(
         acropolisOfAthensBase,
         acropolisOfAthensPillar1,

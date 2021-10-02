@@ -34,7 +34,7 @@ function init() {
 
 function createCamera() {
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(-7, 8, 20);
+    camera.position.set(-2, 8, 20);
 }
 
 function createControls() {
@@ -165,21 +165,20 @@ function createTorreDiPisa() {
     const materials = createMaterials();
 
     const torreDiPisaBodyBottom = new THREE.Mesh(geometries.torreDiPisaBodyBottom, materials.rockTexture);
-    torreDiPisaBodyBottom.position.set(0, -1.5, 2);
     const torreDiPisaBodyParts1 = new THREE.Mesh(geometries.torreDiPisaBodyParts, materials.rockTexture);
-    torreDiPisaBodyParts1.position.set(0, -0.1, 2);
+    torreDiPisaBodyParts1.position.y = 1.4;
     const torreDiPisaBodyParts2 = new THREE.Mesh(geometries.torreDiPisaBodyParts, materials.rockTexture);
-    torreDiPisaBodyParts2.position.set(0, 0.7, 2);
+    torreDiPisaBodyParts2.position.y = 2.2;
     const torreDiPisaBodyParts3 = new THREE.Mesh(geometries.torreDiPisaBodyParts, materials.rockTexture);
-    torreDiPisaBodyParts3.position.set(0, 1.5, 2);
+    torreDiPisaBodyParts3.position.y = 3;
     const torreDiPisaBodyParts4 = new THREE.Mesh(geometries.torreDiPisaBodyParts, materials.rockTexture);
-    torreDiPisaBodyParts4.position.set(0, 2.3, 2);
+    torreDiPisaBodyParts4.position.y = 3.8;
     const torreDiPisaBodyParts5 = new THREE.Mesh(geometries.torreDiPisaBodyParts, materials.rockTexture);
-    torreDiPisaBodyParts5.position.set(0, 3.1, 2);
+    torreDiPisaBodyParts5.position.y = 4.6;
     const torreDiPisaBodyParts6 = new THREE.Mesh(geometries.torreDiPisaBodyParts, materials.rockTexture);
-    torreDiPisaBodyParts6.position.set(0, 3.9, 2);
+    torreDiPisaBodyParts6.position.y = 5.4;
     const torreDiPisaHead = new THREE.Mesh(geometries.torreDiPisaHead, materials.rockTexture);
-    torreDiPisaHead.position.set(0, 4.6, 2);
+    torreDiPisaHead.position.y = 6.1;
     const torreDiPisaBodyGroup = new THREE.Group();
     torreDiPisaBodyGroup.add(
         torreDiPisaBodyBottom,
@@ -191,6 +190,7 @@ function createTorreDiPisa() {
         torreDiPisaBodyParts6
     );
     const torreDiPisaGroup = new THREE.Group();
+    torreDiPisaGroup.position.set(3, -1.5, 1.5);
     torreDiPisaGroup.add(torreDiPisaBodyGroup, torreDiPisaHead);
     torreDiPisaGroup.rotation.z = Math.PI / 180 * 10;
     torreDiPisaGroup.rotation.y = Math.PI / 180 * 180;
@@ -204,10 +204,12 @@ function createPyramid() {
     const materials = createMaterials();
 
     const pyramidBig = new THREE.Mesh(geometries.pyramidBig, materials.pyramidTexture);
-    pyramidBig.position.set(-7.5, -2.5, 0);
+    pyramidBig.position.x = -0.5;
+    pyramidBig.position.z = -1;
     const pyramidSmall = new THREE.Mesh(geometries.pyramidSmall, materials.pyramidTexture);
-    pyramidSmall.position.set(-7, -2.5, 1.75);
+    pyramidSmall.position.z = 0.75;
     const pyramidGroup = new THREE.Group();
+    pyramidGroup.position.set(-4, -2.5, 1.8);
     pyramidGroup.add(pyramidBig, pyramidSmall);
     
     return pyramidGroup;
@@ -259,7 +261,7 @@ function createSagradaFamiliaGroup() {
     sagradaFamiliaInTop.position.y = 1;
     
     const sagradaFamiliaGroup = new THREE.Group();
-    sagradaFamiliaGroup.position.set(6, 0, -1);
+    sagradaFamiliaGroup.position.set(10, 0, -1);
     sagradaFamiliaGroup.add(
         sagradaFamiliaOutLeft, 
         sagradaFamiliaOutLeftTop,
@@ -281,14 +283,18 @@ function createNotreDameDeParis() {
     const materials = createMaterials();
 
     const notreDameDeParisOutLeft = new THREE.Mesh(geometries.notreDameDeParisOut, materials.lightRockTexture);
-    notreDameDeParisOutLeft.position.set(-12.5, -2, -5);
+    notreDameDeParisOutLeft.position.x = -1.5;
+    notreDameDeParisOutLeft.position.y = 0.75;
     const notreDameDeParisOutRight = new THREE.Mesh(geometries.notreDameDeParisOut, materials.lightRockTexture);
-    notreDameDeParisOutRight.position.set(-9.5, -2, -5);
+    notreDameDeParisOutRight.position.x = 1.5;
+    notreDameDeParisOutRight.position.y = 0.75;
     const notreDameDeParisMid = new THREE.Mesh(geometries.notreDameDeParisMid, materials.lightRockTexture);
-    notreDameDeParisMid.position.set(-11, -2.75, -5);
     const notreDameDeParisCir = new THREE.Mesh(geometries.notreDameDeParisCir, materials.darkRockTexture);
-    notreDameDeParisCir.position.set(-11, -2, -4.24);
+    notreDameDeParisCir.position.y = 0.75;
+    notreDameDeParisCir.position.z = 0.76;
+
     const notreDameDeParisGroup = new THREE.Group();
+    notreDameDeParisGroup.position.set(-9, -2.75, -3);
     notreDameDeParisGroup.add(
         notreDameDeParisOutLeft,
         notreDameDeParisOutRight,
@@ -441,7 +447,7 @@ function createAcropolisOfAthensMesh() {
     acropolisOfAthensPillar46.rotation.z = Math.PI / 180 * 180;
 
     const acropolisOfAthensGroup = new THREE.Group();
-    acropolisOfAthensGroup.position.set(-1, -3, -7);
+    acropolisOfAthensGroup.position.set(0, -3, -7);
     acropolisOfAthensGroup.add(
         acropolisOfAthensBase,
         acropolisOfAthensPillar1,

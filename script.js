@@ -77,9 +77,13 @@ function createGeometries() {
     const sagradaFamiliaIn = new THREE.CylinderBufferGeometry( 0.1, 0.8, 4.5, 64);
     const sagradaFamiliaTop = new THREE.SphereBufferGeometry(0.2, 64, 64);
 
-    const notreDameDeParisOut = new THREE.BoxBufferGeometry(1.5, 5, 1.5);
-    const notreDameDeParisMid = new THREE.BoxBufferGeometry(1.5, 3.5, 1.5);
+    const notreDameDeParisOut = new THREE.BoxBufferGeometry(1.5, 7, 1.5);
+    const notreDameDeParisMid = new THREE.BoxBufferGeometry(1.5, 5, 1.5);
     const notreDameDeParisCir = new THREE.CircleBufferGeometry(0.5, 16);
+    const notreDameDeParisStripOut = new THREE.PlaneBufferGeometry(0.2, 6.5);
+    const notreDameDeParisStripIn = new THREE.PlaneBufferGeometry(0.2, 2);
+    const notreDameDeParisStripTop = new THREE.PlaneBufferGeometry(4.5, 0.15);
+    const notreDameDeParisStripBottom = new THREE.PlaneBufferGeometry(4.3, 0.8);
 
     const acropolisOfAthensBase = new THREE.BoxBufferGeometry(9, 0.5, 4.5);
     const acropolisOfAthensPillar = new THREE.CylinderBufferGeometry(0.15, 0.15, 3, 64);
@@ -99,10 +103,14 @@ function createGeometries() {
         notreDameDeParisOut,
         notreDameDeParisMid,
         notreDameDeParisCir,
+        notreDameDeParisStripOut,
+        notreDameDeParisStripIn,
+        notreDameDeParisStripTop,
         acropolisOfAthensBase,
         acropolisOfAthensPillar,
         acropolisOfAthensTopL,
         acropolisOfAthensTopS,
+        notreDameDeParisStripBottom,
     };
 }
 
@@ -121,10 +129,11 @@ function createMaterials() {
     });
     const lightRockTexture = new THREE.MeshBasicMaterial({
         map: loader.load('assets/light-rock.jpg'),
-        color: 0xc3c3c3,
+        color: 0xF9E4C8,
     });
     const darkRockTexture = new THREE.MeshBasicMaterial({
         map: loader.load('assets/dark-rock.jpg'),
+        color: 0xF9E4C8,
     });
     const redRockTexture = new THREE.MeshBasicMaterial({
         map: loader.load('assets/red-rock.jpg'),
@@ -284,22 +293,65 @@ function createNotreDameDeParis() {
 
     const notreDameDeParisOutLeft = new THREE.Mesh(geometries.notreDameDeParisOut, materials.lightRockTexture);
     notreDameDeParisOutLeft.position.x = -1.5;
-    notreDameDeParisOutLeft.position.y = 0.75;
+    notreDameDeParisOutLeft.position.y = 1;
     const notreDameDeParisOutRight = new THREE.Mesh(geometries.notreDameDeParisOut, materials.lightRockTexture);
     notreDameDeParisOutRight.position.x = 1.5;
-    notreDameDeParisOutRight.position.y = 0.75;
+    notreDameDeParisOutRight.position.y = 1;
     const notreDameDeParisMid = new THREE.Mesh(geometries.notreDameDeParisMid, materials.lightRockTexture);
     const notreDameDeParisCir = new THREE.Mesh(geometries.notreDameDeParisCir, materials.darkRockTexture);
-    notreDameDeParisCir.position.y = 0.75;
+    notreDameDeParisCir.position.y = 0.9;
     notreDameDeParisCir.position.z = 0.76;
+    const notreDameDeParisStrip1 = new THREE.Mesh(geometries.notreDameDeParisStripOut, materials.darkRockTexture);
+    notreDameDeParisStrip1.position.x = -1.7;
+    notreDameDeParisStrip1.position.y = 0.75;
+    notreDameDeParisStrip1.position.z = 0.76;
+    const notreDameDeParisStrip2 = new THREE.Mesh(geometries.notreDameDeParisStripOut, materials.darkRockTexture);
+    notreDameDeParisStrip2.position.x = -1.3;
+    notreDameDeParisStrip2.position.y = 0.75;
+    notreDameDeParisStrip2.position.z = 0.76;
+    const notreDameDeParisStrip3 = new THREE.Mesh(geometries.notreDameDeParisStripOut, materials.darkRockTexture);
+    notreDameDeParisStrip3.position.x = 1.7;
+    notreDameDeParisStrip3.position.y = 0.75;
+    notreDameDeParisStrip3.position.z = 0.76;
+    const notreDameDeParisStrip4 = new THREE.Mesh(geometries.notreDameDeParisStripOut, materials.darkRockTexture);
+    notreDameDeParisStrip4.position.x = 1.3;
+    notreDameDeParisStrip4.position.y = 0.75;
+    notreDameDeParisStrip4.position.z = 0.76;
+    const notreDameDeParisStripS1 = new THREE.Mesh(geometries.notreDameDeParisStripIn, materials.darkRockTexture);
+    notreDameDeParisStripS1.position.x = -0.3;
+    notreDameDeParisStripS1.position.y = -1.5;
+    notreDameDeParisStripS1.position.z = 0.76;
+    const notreDameDeParisStripS2 = new THREE.Mesh(geometries.notreDameDeParisStripIn, materials.darkRockTexture);
+    notreDameDeParisStripS2.position.x = 0.3;
+    notreDameDeParisStripS2.position.y = -1.5;
+    notreDameDeParisStripS2.position.z = 0.76;
+    const notreDameDeParisStripTop1 = new THREE.Mesh(geometries.notreDameDeParisStripTop, materials.darkRockTexture);
+    notreDameDeParisStripTop1.position.y = 2.4;
+    notreDameDeParisStripTop1.position.z = 0.76;
+    const notreDameDeParisStripTop2 = new THREE.Mesh(geometries.notreDameDeParisStripTop, materials.darkRockTexture);
+    notreDameDeParisStripTop2.position.y = 1.7;
+    notreDameDeParisStripTop2.position.z = 0.76;
+    const notreDameDeParisStripBottom = new THREE.Mesh(geometries.notreDameDeParisStripBottom, materials.darkRockTexture);
+    notreDameDeParisStripBottom.position.y = -0.1;
+    notreDameDeParisStripBottom.position.z = 0.76;
+
 
     const notreDameDeParisGroup = new THREE.Group();
-    notreDameDeParisGroup.position.set(-9, -2.75, -3);
+    notreDameDeParisGroup.position.set(-9, -2, -3);
     notreDameDeParisGroup.add(
         notreDameDeParisOutLeft,
         notreDameDeParisOutRight,
         notreDameDeParisMid,
-        notreDameDeParisCir
+        notreDameDeParisCir,
+        notreDameDeParisStrip1,
+        notreDameDeParisStrip2,
+        notreDameDeParisStrip3,
+        notreDameDeParisStrip4,
+        notreDameDeParisStripS1,
+        notreDameDeParisStripS2,
+        notreDameDeParisStripTop1,
+        notreDameDeParisStripTop2,
+        notreDameDeParisStripBottom,
     );
     
     return notreDameDeParisGroup;

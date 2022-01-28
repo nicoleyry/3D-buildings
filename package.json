@@ -9,6 +9,6 @@
   "author": "Nicole Yang",
   "license": "ISC",
   "dependencies": {
-    "three": "^0.132.2"
+    "three": "^0.137.0"
   }
 }
